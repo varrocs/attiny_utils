@@ -1,5 +1,6 @@
 #include "utils.h"
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include <util/delay.h>
 
 void pin_mode_out(byte pin) {
@@ -32,6 +33,12 @@ int analog_read() {
 	return result;
 }
 
+void enable_interrupt_on(byte interrupt) {
+	PCMSK |= _BV(interrupt);	// pin change mask
+	GIMSK |= _BV(PCIE);	// enable PCINT interrupt
+	sei();			// enable all interrupts
+}
+
 void flash(byte pin, byte count) {
 	for (byte i = 0; i < count; ++i) {
 		pin_out_high(pin);
@@ -48,10 +55,10 @@ void debug_out(byte pin, int value) {
 
 	while (value > 0 && counter < sizeof digits) {
 		int digit = value % 10;
-		digit += 1;	
-		digits[counter++] = digit; 
-		value /= 10; 
-	}   
+		digit += 1;
+		digits[counter++] = digit;
+		value /= 10;
+	}
 	// Output it backwards
 	while (--counter >= 0) {
 		flash(pin, digits[counter]);

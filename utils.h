@@ -12,6 +12,7 @@ void pin_out_high(byte pin);
 void pin_out_low(byte pin);
 
 int analog_read();
+void enable_interrupt_on(byte interrupt);
 
 void flash(byte pin, byte value);
 void debug_out(byte pin, int value);

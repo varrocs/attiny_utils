@@ -17,11 +17,11 @@ typedef unsigned char TaskId;
 // Interface
 void InitScheduler();
 TaskId AddSchedulerTask(
-		TaskFunction func, 
-		Time delay, 
-		Time period = 0, 
-		void* param = (void*)0, 
-		Time elapsedTime = 0);
+		TaskFunction func,
+		Time delay,
+		Time period,
+		void* param,
+		Time elapsedTime);
 Time SchedulerTick(Time millis);
 Time GetNextSchedulerTime();
 void RemoveSchedulerTask(TaskId taskId);
@@ -36,4 +36,3 @@ typedef struct Task {
 	void* param;
 	TaskState state;
 } Task;
-

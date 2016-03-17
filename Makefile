@@ -6,9 +6,8 @@ LIB_HEADERS=scheduler.h  types.h utils.h
 $(LIB_TARGET): $(LIB_OBJECTS)
 	$(AR) cr $@ $^
 
-%.o: %.cpp $(LIB_HEADERS)
-	$(CXX) -c $(CXXFLAGS) $< -o $@
+%.o: %.c $(LIB_HEADERS)
+	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
 	rm $(LIB_TARGET) $(LIB_OBJECTS)
-
