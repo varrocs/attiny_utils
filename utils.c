@@ -66,3 +66,19 @@ void debug_out(byte pin, int value) {
 	}
 	_delay_ms(1500);
 }
+
+
+//	http://matt16060936.blogspot.hu/2012/04/attiny-pwm.html
+void setup_pwm_pb1()
+{
+	// SETUP for OC0B / 6 / PB1
+	DDRB |= 1 << DDB1;	// Set pin as output
+	
+	// Fast PWM, no prescale
+	TCCR0A = 2 << COM0B0 | 3 << WGM00;
+	TCCR0B = 0 << WGM02  | 1 << CS00;
+}
+void pin_pwm_pb1(byte value)
+{
+	OCR0B = value;
+}

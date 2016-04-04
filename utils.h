@@ -11,6 +11,9 @@ void pin_mode_in(byte pin);
 void pin_out_high(byte pin);
 void pin_out_low(byte pin);
 
+void setup_pwm_pb1();
+void pin_pwm_pb1(byte value);
+
 int analog_read();
 void enable_interrupt_on(byte interrupt);
 
